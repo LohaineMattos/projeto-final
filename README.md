@@ -1,155 +1,87 @@
 # 📚 Projeto Final — TCC
 
-Sistema web desenvolvido como parte do Trabalho de Conclusão de Curso (TCC).  
-O objetivo é **[Sistema de logística de cadastro e controle de produtos. Integração em tempo real com finalidade de otimização de tempo e custo-benefício.]**.
+# **Gelco - sistema de logística integrada**
 
-📝 Sobre o projeto
+Gelco é um sistema **full-stack** concebido para otimizar o controle de mercadorias, operadores, usuários e matérias-prima de estoque em ambientes industriais.  
+O projeto foi desenvolvido como Trabalho de Conclusão de Curso (TCC) e demonstra boas práticas de arquitetura, código limpo e UX simples, porém profissional.
 
-Este é o projeto final do trabalho de conclusão de curso (TCC), cujo propósito é desenvolver um sistema Full-Stack integrando Back e front-end.
+---
 
-Escopo
+## ✨ Principais Funcionalidades
 
-O sistema contempla:
-
-Autenticação e controle de acesso
-
-Operações de CRUD (criar, ler, atualizar, deletar) para entidades como …
-
-Painéis / dashboards para visualização de dados
-
-Interface responsiva para uso em desktop e mobile
-
-Integrações (se houver: API, banco de dados externo, serviços, etc.)
-
-🏗 Estrutura do projeto
-projeto-final/
-│
-├── api/            ← Backend (servidor, rotas, lógica de negócio)
-├── front/          ← Frontend (interface de usuário, páginas, componentes)
-├── .vscode/        ← Configurações do VS Code (opcionalmente)
-├── README.md       ← Este arquivo
-└── …               ← Outros arquivos de configuração (gitignore, etc.)
+| Módulo | Descrição |
+| ------ | --------- |
+| **Unitários** | Dados de turno, operadaor e etc. |
+| **Lotes** | Registro de mercadorias. |
+| **Usuários** | Controle de acesso interno (nome, e-mail). |
 
 
-Você pode complementar com subpastas, casos de uso, testes, etc., conforme estiver no repositório.
+---
 
-🛠 Tecnologias
+## 🏗️ Stack & Arquitetura
 
-Principais tecnologias / bibliotecas / frameworks utilizados:
+| Camada | Tecnologias |
+| ------ | ----------- |
+| **Back-end** | Node.js · Express · Prisma ORM · MySQL  |
+| **Front-end** | HTML5 · CSS3 · JavaScript (ES6) – 100 % Vanilla |
+| **Persistência local** | `localStorage` (front-end offline-first) |
+| **Ferramentas** | Nodemon · VS Code · Insomnia/Postman |
 
-Frontend: (ex: React, Vue, Angular, etc.)
+> **Obs.:** O front-end consome a API REST do back-end; mas, em modo demo, pode operar apenas com `localStorage` para facilitar testes rápidos.
 
-Backend / API: (ex: Node.js + Express, Django, Flask, etc.)
+---
 
-Banco de dados: (ex: PostgreSQL, MySQL, MongoDB, etc.)
+## ⚙️ Como Executar
 
-Outros: bibliotecas auxiliares, ferramentas de build, autenticação, etc.
+### 1. Clonar o repositório
+```bash
+git clone https://github.com/<seu-usuario>/projeto-final.git
+cd smart-supply
+```
 
-(Preencha conforme seu projeto real.)
-
-🚀 Instalação e execução
-Pré-requisitos
-
-Node.js (versão X.X.X)
-
-NPM / Yarn
-
-Banco de dados (ex: PostgreSQL, MySQL) configurado localmente ou remotamente
-
-Outras dependências específicas (ex: variáveis de ambiente, chaves, etc.)
-
-Passos
-
-Clone este repositório
-
-git clone https://github.com/LohaineMattos/projeto-final.git
-cd projeto-final
-
-
-Configurar variáveis de ambiente (ex: .env)
-Exemplo de variáveis esperadas:
-
-DB_HOST=…
-DB_PORT=…
-DB_USER=…
-DB_PASS=…
-DB_NAME=…
-JWT_SECRET=…
-
-
-Instalar dependências
-
-No backend:
-
+### 2. Back-end
+```bash
 cd api
 npm install
+npx prisma migrate dev          # gera o schema no MySQL
+npm run dev                     # inicia em http://localhost:3000
+```
 
+### 3. Front-end
+Abra `web/front/index.html` no navegador  
+*(ou sirva a pasta `web/` com uma extensão Live Server do VS Code).*
 
-No frontend:
+---
 
-cd ../front
-npm install
+## 🗂️ Estrutura de Pastas (resumida)
 
+```
+api/                 # Node + Express + Prisma
+front/
+├── docs/           # HTML (Dashboard, Produtos, etc.)
+```
 
-Inicializar o banco de dados / rodar migrations (se aplicável)
+---
 
-# exemplo
-npx sequelize db:migrate
+## 👥 Autores
 
+| Nome | Função |
+| ---- | ------ |
+| **Maria C. Caleffi** | Dev, designer |
+| **Lohaine Mattos** | Po DEV|
+| **Heloísa Bordini** | Scrum Master, QA |
+| **Miriam Bordini** | Dev Designer |
 
-Executar o sistema
+---
 
-Backend:
+## 📄 Licença
+Projeto acadêmico – uso específico para fins de trabalhistas. Credite os autores entre em contato.
 
-npm run dev
+---
 
+<div align="center">
 
-Frontend:
+**Gelco** © 2025 &nbsp;·&nbsp; Todos os direitos reservados
 
-npm start
+</div>
 
-
-Acesse no navegador
-Vá para http://localhost:3000 (ou porta configurada) para ver a aplicação rodando.
-
-🎯 Uso
-
-Descreva como utilizar o sistema, os principais fluxos, telas e exemplos:
-
-Cadastro / Login
-
-Criar / listar / editar / deletar entidades
-
-Acessar painel / relatório
-
-Exemplos de endpoints da API
-
-Capturas de tela ou gifs (opcional) para ilustrar
-
-🧩 Contribuição
-
-Contribuições são sempre bem-vindas! Se quiser colaborar:
-
-Faça um fork do projeto
-
-Crie uma branch com sua feature ou correção: git checkout -b feature/nova-coisa
-
-Faça suas alterações e commit com mensagem clara
-
-Envie um pull request
-
-Aguarde revisão e feedback
-
-👤 Autor & contato
-
-Lohaine Mattos
-
-E-mail: se quiser disponibilizar
-
-LinkedIn / GitHub: (inserir)
-
-📄 Licença
-
-Este projeto está sob a licença MIT (ou outra que você escolher). Consulte o arquivo LICENSE para mais detalhes.
-
-Se quiser, posso gerar também uma versão com badges, exemplos de tela (imagens) e até diagrama de arquitetura para deixar ainda mais elegante. Você quer que eu faça isso pra você?
