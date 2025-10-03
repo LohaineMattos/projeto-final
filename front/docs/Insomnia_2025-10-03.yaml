@@ -1,0 +1,801 @@
+type: collection.insomnia.rest/5.0
+name: TCC
+meta:
+  id: wrk_6ebd214e2c1d47f4b06892eb057122e6
+  created: 1757957015858
+  modified: 1757957015858
+  description: ""
+collection:
+  - name: Local
+    meta:
+      id: fld_166a119ac06742ca93ec67524785afac
+      created: 1759489981476
+      modified: 1759489981476
+      sortKey: -1759489981476
+      description: ""
+    children:
+      - url: http://localhost:3000/api/teste
+        name: ROTA DE SAÚDE
+        meta:
+          id: req_8b0c4b376d2e45d0b821125868180de4
+          created: 1757957096597
+          modified: 1759508622251
+          isPrivate: false
+          description: ""
+          sortKey: -1759489988885
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.1.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - name: Unitario
+        meta:
+          id: fld_46f1a680c0f64f61ab1274f884758f59
+          created: 1758298279851
+          modified: 1759489992796
+          sortKey: -1759489988435
+          description: ""
+        children:
+          - url: http://localhost:3000/api/unitarios
+            name: DELETE
+            meta:
+              id: req_eaf910070af246efa94102860609b9fd
+              created: 1758298363134
+              modified: 1759490274249
+              isPrivate: false
+              description: ""
+              sortKey: -1758298363134
+            method: DELETE
+            headers:
+              - name: User-Agent
+                value: insomnia/11.6.1
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:3000/api/unitarios
+            name: UPDATE
+            meta:
+              id: req_ea4335f017d14b0886df5c15b023d098
+              created: 1758298399550
+              modified: 1759490269708
+              isPrivate: false
+              description: ""
+              sortKey: -1758298399550
+            method: PUT
+            headers:
+              - name: User-Agent
+                value: insomnia/11.6.1
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:3000/api/unitarios/1
+            name: READONE
+            meta:
+              id: req_0d46ee3dcf824f9aab3864c0ab3c8793
+              created: 1758298402058
+              modified: 1759490459280
+              isPrivate: false
+              description: ""
+              sortKey: -1758298402058
+            method: GET
+            headers:
+              - name: User-Agent
+                value: insomnia/11.6.1
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:3000/api/unitarios
+            name: READ
+            meta:
+              id: req_8a48ef03281f4a428a0e8ad9a4b2014a
+              created: 1758298404484
+              modified: 1759509352444
+              isPrivate: false
+              description: ""
+              sortKey: -1758298404484
+            method: GET
+            headers:
+              - name: User-Agent
+                value: insomnia/11.6.1
+            authentication:
+              type: bearer
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:3000/api/unitario
+            name: POST
+            meta:
+              id: req_893004e8b6aa4387afa7944df487e7cc
+              created: 1758298408404
+              modified: 1759509316207
+              isPrivate: false
+              description: ""
+              sortKey: -1758298408404
+            method: POST
+            body:
+              mimeType: application/json
+              text: |
+                {
+                  "data": "2025-10-03T14:30:00Z",
+                  "turno": "Tarde",
+                  "peso": 10.7,
+                  "operador": "Ulisses Guimaraes",
+                  "etiqueta": "ETQ999"
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/11.6.1
+            authentication:
+              type: bearer
+              token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJsb2hhaW5lQGdtYWlsLmNvbSIsImlhdCI6MTc1OTUwMTA3MiwiZXhwIjoxNzU5NTA0NjcyfQ.J8pL2V0IzqF-XIbSG2go-ksZ9GPbQCfSf_iWQvsOvKM
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+      - name: Lotes
+        meta:
+          id: fld_40ad187e46284c439420d114d8b48eeb
+          created: 1758298300404
+          modified: 1759489991140
+          sortKey: -1759489988485
+          description: ""
+        children:
+          - url: http://localhost:3000/api/lotes
+            name: DELETE
+            meta:
+              id: req_71994c97de2744b089939f0fbf936b12
+              created: 1758298322935
+              modified: 1759508413116
+              isPrivate: false
+              description: ""
+              sortKey: -1758298322935
+            method: DELETE
+            headers:
+              - name: User-Agent
+                value: insomnia/11.6.1
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:3000/api/lotes
+            name: UPDATE
+            meta:
+              id: req_de01324316da40bd8ef22c6c84c19429
+              created: 1758298326815
+              modified: 1759508410633
+              isPrivate: false
+              description: ""
+              sortKey: -1758298326815
+            method: PUT
+            headers:
+              - name: User-Agent
+                value: insomnia/11.6.1
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:3000/api/lotes/1
+            name: READONE
+            meta:
+              id: req_5dcbc89eda0247eda8af84efa89a70fa
+              created: 1758298329245
+              modified: 1759508407976
+              isPrivate: false
+              description: ""
+              sortKey: -1758298329245
+            method: GET
+            headers:
+              - name: User-Agent
+                value: insomnia/11.6.1
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:3000/api/lotes
+            name: READ
+            meta:
+              id: req_918e21df779247d6a99972789bd84e1d
+              created: 1758298331725
+              modified: 1759509377574
+              isPrivate: false
+              description: ""
+              sortKey: -1758298331725
+            method: GET
+            headers:
+              - name: User-Agent
+                value: insomnia/11.6.1
+            authentication:
+              type: bearer
+              token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJsb2hhaW5lQGdtYWlsLmNvbSIsImlhdCI6MTc1OTUwOTM2NCwiZXhwIjoxNzU5NTEyOTY0fQ.e60R8MOvVekynlizgLEvGogezP1IZ68Le7QubPhEz50
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:3000/api/lotes
+            name: POST
+            meta:
+              id: req_8369f26c81bb4f5fa839220e9fadaf57
+              created: 1758298334467
+              modified: 1759509301487
+              isPrivate: false
+              description: ""
+              sortKey: -1758298334467
+            method: POST
+            body:
+              mimeType: application/json
+              text: |
+                {
+                  "data": "2025-10-03T14:00:00.000Z",
+                  "horario": "15:00",
+                  "turno": "Manhã",
+                  "peso_vazio": 1.2,
+                  "peso_cheio": 5.5,
+                  "etiqueta": "ETQ123",
+                  "operador": "Ulisses Guimaraes",
+                  "tipo": "Teste",
+                  "autenticado": false,
+                  "peso_embalagem": 0.5,
+                  "qtd_sacos": 10
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/11.6.1
+            authentication:
+              type: bearer
+              token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJsb2hhaW5lQGdtYWlsLmNvbSIsImlhdCI6MTc1OTQ5ODk4MCwiZXhwIjoxNzU5NTAyNTgwfQ.RLe4lDBPv2CIIYisffz_mihmHenw3HNOyHcOgAbmxKE
+              disabled: false
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+      - name: Autenticação
+        meta:
+          id: fld_2e8aacd1e0a44c84bd048332be5c4d1d
+          created: 1758298911603
+          modified: 1759508618454
+          sortKey: -1759489988785
+          description: ""
+        children:
+          - url: http://localhost:3000/api/usuario
+            name: Cadastrar usuario
+            meta:
+              id: req_f1da6be9b6f24e61aa64a034728a05d2
+              created: 1758298917007
+              modified: 1759497255719
+              isPrivate: false
+              description: ""
+              sortKey: -1758298917007
+            method: POST
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                	"nome": "Miriam Bordini",
+                  "email": "miriam@gmail.com",
+                  "senha": "senha1234"
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/11.6.1
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:3000/api/login
+            name: Login
+            meta:
+              id: req_d73dcbb990284f5b898e006f110c4971
+              created: 1758299284878
+              modified: 1759497286041
+              isPrivate: false
+              description: ""
+              sortKey: -1758299284878
+            method: POST
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                  "email": "lohaine@gmail.com",
+                  "senha": "senha1234"
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/11.6.1
+            authentication:
+              type: bearer
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:3000/api/usuario
+            name: READ
+            meta:
+              id: req_87e3cc3da969407299415f9ca486d441
+              created: 1759492511036
+              modified: 1759497074245
+              isPrivate: false
+              description: ""
+              sortKey: -1759492511036
+            method: GET
+            body:
+              mimeType: application/json
+              text: ""
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/11.6.1
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+  - name: Vercel
+    meta:
+      id: fld_b26ad75e358c40e8a32fe8baa2958290
+      created: 1759495386561
+      modified: 1759495386561
+      sortKey: -1759489981426
+      description: ""
+    children:
+      - url: http://localhost:3000/api
+        name: ROTA DE SAÚDE
+        meta:
+          id: req_26001a9f4e2544afab5edb3b7bf73563
+          created: 1759495386565
+          modified: 1759508543773
+          isPrivate: false
+          description: ""
+          sortKey: -1759489988885
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.1.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - name: Unitario
+        meta:
+          id: fld_9bff96929779496a8c66753a6600be28
+          created: 1759495386572
+          modified: 1759495386572
+          sortKey: -1759489988435
+          description: ""
+        children:
+          - url: http://localhost:3000/api/unitarios
+            name: DELETE
+            meta:
+              id: req_9acd944435034ed09c802afe3072c6f3
+              created: 1759495386574
+              modified: 1759495386574
+              isPrivate: false
+              description: ""
+              sortKey: -1758298363134
+            method: DELETE
+            headers:
+              - name: User-Agent
+                value: insomnia/11.6.1
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:3000/api/unitarios
+            name: UPDATE
+            meta:
+              id: req_dd2e64e782e948c48a7b1407060fd863
+              created: 1759495386576
+              modified: 1759495386576
+              isPrivate: false
+              description: ""
+              sortKey: -1758298399550
+            method: PUT
+            headers:
+              - name: User-Agent
+                value: insomnia/11.6.1
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:3000/api/unitarios/1
+            name: READONE
+            meta:
+              id: req_266c3c7b3394464aa98e3358698eb79f
+              created: 1759495386579
+              modified: 1759495386579
+              isPrivate: false
+              description: ""
+              sortKey: -1758298402058
+            method: GET
+            headers:
+              - name: User-Agent
+                value: insomnia/11.6.1
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:3000/api/unitarios
+            name: READ
+            meta:
+              id: req_fd58baa519b14ca6a5460290496b10ea
+              created: 1759495386581
+              modified: 1759495386581
+              isPrivate: false
+              description: ""
+              sortKey: -1758298404484
+            method: GET
+            headers:
+              - name: User-Agent
+                value: insomnia/11.6.1
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:3000/api/unitarios
+            name: POST
+            meta:
+              id: req_f30d5b9816a44005a4a63a90776dae7e
+              created: 1759495386583
+              modified: 1759495386583
+              isPrivate: false
+              description: ""
+              sortKey: -1758298408404
+            method: POST
+            body:
+              mimeType: application/json
+              text: |
+                {
+                  "data": "2025-10-03T14:30:00Z",
+                  "turno": "Tarde",
+                  "peso": 10.7,
+                  "operador": "Carlos Operador",
+                  "etiqueta": "ETQ999"
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/11.6.1
+            authentication:
+              type: bearer
+              token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwiZW1haWwiOiJtYXJpYUBnbWFpbC5jb20iLCJpYXQiOjE3NTk0OTI3MjQsImV4cCI6MTc1OTQ5NjMyNH0.q7p3yylks-f7Rbtw-lyWoXBQNRgW3eLYS9v-f3LTaCA
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+      - name: Lotes
+        meta:
+          id: fld_627765a01f904c2996738cda06357e20
+          created: 1759495386585
+          modified: 1759495386585
+          sortKey: -1759489988485
+          description: ""
+        children:
+          - url: ""
+            name: DELETE
+            meta:
+              id: req_e83cec185aa8477db213ed708dffbee1
+              created: 1759495386587
+              modified: 1759495386587
+              isPrivate: false
+              description: ""
+              sortKey: -1758298322935
+            method: DELETE
+            headers:
+              - name: User-Agent
+                value: insomnia/11.6.1
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: ""
+            name: UPDATE
+            meta:
+              id: req_842058429e7e4df0a4b1a12f8794716a
+              created: 1759495386589
+              modified: 1759495386589
+              isPrivate: false
+              description: ""
+              sortKey: -1758298326815
+            method: PUT
+            headers:
+              - name: User-Agent
+                value: insomnia/11.6.1
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: ""
+            name: READONE
+            meta:
+              id: req_51a20195e3bb43d6a3e7a90eb8f9ea9f
+              created: 1759495386591
+              modified: 1759495386591
+              isPrivate: false
+              description: ""
+              sortKey: -1758298329245
+            method: GET
+            headers:
+              - name: User-Agent
+                value: insomnia/11.6.1
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: ""
+            name: READ
+            meta:
+              id: req_93aa406fe4d74124af9ecd819cbefbbb
+              created: 1759495386593
+              modified: 1759495386593
+              isPrivate: false
+              description: ""
+              sortKey: -1758298331725
+            method: GET
+            headers:
+              - name: User-Agent
+                value: insomnia/11.6.1
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:3000/api/lotes
+            name: POST
+            meta:
+              id: req_524fb05cbfc142e08d380602148848c9
+              created: 1759495386595
+              modified: 1759498877308
+              isPrivate: false
+              description: ""
+              sortKey: -1758298334467
+            method: POST
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                  "data": "2025-10-03T10:00:00.000Z",
+                  "horario": "08:00",
+                  "turno": "manhã",
+                  "peso_vazio": 10.5,
+                  "peso_cheio": 20.3,
+                  "etiqueta": "ETQ123",
+                  "operador": "João",
+                  "tipo": "Café",
+                  "autenticado": false,
+                  "peso_embalagem": 0.5,
+                  "qtd_sacos": 5
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/11.6.1
+            authentication:
+              type: bearer
+              token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwiZW1haWwiOiJtYXJpYUBnbWFpbC5jb20iLCJpYXQiOjE3NTk0OTUyMjEsImV4cCI6MTc1OTQ5ODgyMX0.6zoBCM1TrJisQRUIQwe-FJg1OKP246hIGggwY4LaYNU
+              disabled: false
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+      - name: Autenticação
+        meta:
+          id: fld_db0b9198e8b340cd912637e344502491
+          created: 1759495386598
+          modified: 1759495386598
+          sortKey: -1759489988385
+          description: ""
+        children:
+          - url: http://localhost:3000/api/login
+            name: Cadastrar usuario
+            meta:
+              id: req_5cdcc366718e4c8ba34097d67d97aae5
+              created: 1759495386600
+              modified: 1759495386600
+              isPrivate: false
+              description: ""
+              sortKey: -1758298917007
+            method: POST
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                  "email": "maria@gmail.com",
+                  "senha": "senha0802"
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/11.6.1
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:3000/api/login
+            name: Login
+            meta:
+              id: req_fcff9fb1cce5445aa837aa6597f46a09
+              created: 1759495386602
+              modified: 1759495386602
+              isPrivate: false
+              description: ""
+              sortKey: -1758299284878
+            method: POST
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                  "email": "maria@gmail.com",
+                  "senha": "senha0802"
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/11.6.1
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:3000/api/login
+            name: READ
+            meta:
+              id: req_0ccb514216d940abbd4be6e5a9ee5645
+              created: 1759495386604
+              modified: 1759495386604
+              isPrivate: false
+              description: ""
+              sortKey: -1759492511036
+            method: GET
+            body:
+              mimeType: application/json
+              text: ""
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/11.6.1
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_a6a3fc1c05d2644c53b43d633ee94df768987aa7
+    created: 1757957015874
+    modified: 1757957015874
+environments:
+  name: Base Environment
+  meta:
+    id: env_a6a3fc1c05d2644c53b43d633ee94df768987aa7
+    created: 1757957015867
+    modified: 1757957015867
+    isPrivate: false

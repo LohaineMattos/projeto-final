@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Gelco - Controle de Lotes</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    /* ============================= ESTILO GERAL ============================= */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background: #2e2555;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 25px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+    }
+
+    .header-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+    .back-btn {
+      background: #f0f0f0;
+      border: none;
+      border-radius: 50%;
+      width: 42px;
+      height: 42px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.3s;
+    }
+    .back-btn:hover {
+      background: #c01c7c;
+      transform: translateX(-3px);
+    }
+
+    .action-btn {
+      background: #3498db;
+      color: #fff;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-bottom: 20px;
+      font-size: 1em;
+      transition: background 0.3s;
+    }
+    .action-btn:hover { background: #217dbb; }
+
+    .filter-btn {
+      background: #34495e;
+      color: #fff;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.9em;
+      transition: background 0.3s;
+    }
+    .filter-btn:hover { background: #2c3e50; }
+    .filter-btn.secondary {
+      background: #ecf0f1;
+      color: #333;
+      border: 1px solid #ccc;
+    }
+    .filter-btn.secondary:hover { background: #d5d8dc; }
+
+    .filters { margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+    .filters select, .filters input {
+      padding: 8px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 0.95em;
+    }
+
+    .table-container { overflow-x: auto; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      color: #333;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    thead { background: #2c3e50; color: #fff; text-transform: uppercase; }
+    th, td { padding: 12px; text-align: center; border-bottom: 1px solid #ddd; }
+    tbody tr:nth-child(even) { background: #f9f9f9; }
+    tbody tr:hover { background: #f1f1f1; }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0; top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.6);
+    }
+    .modal-content {
+      background: #fff;
+      margin: 6% auto;
+      padding: 20px;
+      border-radius: 12px;
+      width: 400px;
+      color: #333;
+      position: relative;
+    }
+    .close {
+      position: absolute;
+      right: 15px;
+      top: 10px;
+      font-size: 28px;
+      font-weight: bold;
+      color: #aaa;
+      cursor: pointer;
+    }
+    .close:hover { color: #000; }
+
+    .form-group { margin-bottom: 15px; }
+    .form-group label { display: block; margin-bottom: 6px; font-weight: bold; }
+    .form-group input, .form-group select {
+      width: 100%; padding: 8px; border-radius: 6px; border: 1px solid #ccc; font-size: 0.95em;
+    }
+    .submit-btn { background: #3498db; color: #fff; border: none; padding: 10px 16px; border-radius: 8px; cursor: pointer; font-size: 1em; transition: background 0.3s; }
+    .submit-btn:hover { background: #217dbb; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header-container">
+      <button class="back-btn" onclick="window.location.href='menu.html'">
+        <i class="fas fa-arrow-left"></i>
+      </button>
+      <h1>Controle de Lotes</h1>
+      <div style="width: 40px;"></div>
+    </div>
+
+    <button id="addLote" class="action-btn">
+      <i class="fas fa-plus"></i> Adicionar Lote
+    </button>
+
+    <div class="filters">
+      <select id="filterField">
+        <option value="data">Data</option>
+        <option value="etiqueta">Etiqueta</option>
+        <option value="operador">Operador</option>
+      </select>
+      <input type="text" id="filterValue" placeholder="Filtrar...">
+      <button onclick="filterTable()" class="filter-btn">Aplicar</button>
+      <button onclick="resetFilters()" class="filter-btn secondary">Limpar</button>
+    </div>
+
+    <div class="table-container">
+      <table id="lotesTable">
+        <thead>
+          <tr>
+            <th>Data</th>
+            <th>Horário</th>
+            <th>Turno</th>
+            <th>Peso Vazio (kg)</th>
+            <th>Peso Cheio (kg)</th>
+            <th>Etiqueta</th>
+            <th>Operador</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div id="loteModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2 id="modalTitle">Adicionar Lote</h2>
+      <form id="loteForm">
+        <input type="hidden" id="loteId">
+        <div class="form-group">
+          <label for="data">Data:</label>
+          <input type="date" id="data" required>
+        </div>
+        <div class="form-group">
+          <label for="horario">Horário:</label>
+          <input type="time" id="horario" required>
+        </div>
+        <div class="form-group">
+          <label for="turno">Turno:</label>
+          <select id="turno" required>
+            <option value="Manhã">Manhã</option>
+            <option value="Tarde">Tarde</option>
+            <option value="Noite">Noite</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="peso_vazio">Peso Vazio (kg):</label>
+          <input type="number" step="0.01" id="peso_vazio" required>
+        </div>
+        <div class="form-group">
+          <label for="peso_cheio">Peso Cheio (kg):</label>
+          <input type="number" step="0.01" id="peso_cheio" required>
+        </div>
+        <div class="form-group">
+          <label for="etiqueta">Etiqueta:</label>
+          <input type="text" id="etiqueta" required>
+        </div>
+        <div class="form-group">
+          <label for="operador">Operador:</label>
+          <input type="text" id="operador" required>
+        </div>
+        <button type="submit" class="submit-btn">Salvar</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const addLoteBtn = document.getElementById('addLote');
+    const loteModal = document.getElementById('loteModal');
+    const closeModalBtn = document.querySelector('.close');
+    const loteForm = document.getElementById('loteForm');
+    const lotesTable = document.getElementById('lotesTable').querySelector('tbody');
+
+    addLoteBtn.addEventListener('click', () => {
+      loteForm.reset();
+      document.getElementById('loteId').value = '';
+      document.getElementById('modalTitle').textContent = 'Adicionar Lote';
+      loteModal.style.display = 'block';
+    });
+
+    closeModalBtn.addEventListener('click', () => loteModal.style.display = 'none');
+    window.addEventListener('click', (e) => { if(e.target === loteModal) loteModal.style.display = 'none'; });
+
+    function renderLote(lote) {
+      const row = document.createElement('tr');
+      row.id = `lote-${lote.id}`;
+      row.innerHTML = `
+        <td>${lote.data}</td>
+        <td>${lote.horario}</td>
+        <td>${lote.turno}</td>
+        <td>${lote.peso_vazio}</td>
+        <td>${lote.peso_cheio}</td>
+        <td>${lote.etiqueta}</td>
+        <td>${lote.operador}</td>
+        <td>
+          <button onclick="editLote(${lote.id})" class="action-btn">Editar</button>
+          <button onclick="deleteLote(${lote.id})" class="action-btn">Excluir</button>
+        </td>
+      `;
+      lotesTable.appendChild(row);
+    }
+
+    async function loadLotes() {
+      try {
+        const res = await fetch('/lotes');
+        const lotes = await res.json();
+        lotesTable.innerHTML = '';
+        lotes.forEach(renderLote);
+      } catch(err) { alert('Erro ao carregar lotes: ' + err.message); }
+    }
+
+    loteForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const id = document.getElementById('loteId').value;
+      const data = {
+        data: document.getElementById('data').value,
+        horario: document.getElementById('horario').value,
+        turno: document.getElementById('turno').value,
+        peso_vazio: parseFloat(document.getElementById('peso_vazio').value),
+        peso_cheio: parseFloat(document.getElementById('peso_cheio').value),
+        etiqueta: document.getElementById('etiqueta').value,
+        operador: document.getElementById('operador').value
+      };
+
+      try {
+        let res, lote;
+        if(id) {
+          res = await fetch(`/lotes/${id}`, {
+            method:'PUT',
+            headers:{'Content-Type':'application/json'},
+            body:JSON.stringify(data)
+          });
+          lote = await res.json();
+          document.getElementById(`lote-${id}`).remove();
+        } else {
+          res = await fetch('/lotes', {
+            method:'POST',
+            headers:{'Content-Type':'application/json'},
+            body:JSON.stringify(data)
+          });
+          lote = await res.json();
+        }
+        renderLote(lote);
+        loteModal.style.display = 'none';
+      } catch(err) { alert('Erro ao salvar lote: ' + err.message); }
+    });
+
+    window.editLote = async function(id) {
+      try {
+        const res = await fetch(`/lotes/${id}`);
+        const lote = await res.json();
+        document.getElementById('loteId').value = lote.id;
+        document.getElementById('data').value = lote.data;
+        document.getElementById('horario').value = lote.horario;
+        document.getElementById('turno').value = lote.turno;
+        document.getElementById('peso_vazio').value = lote.peso_vazio;
+        document.getElementById('peso_cheio').value = lote.peso_cheio;
+        document.getElementById('etiqueta').value = lote.etiqueta;
+        document.getElementById('operador').value = lote.operador;
+        document.getElementById('modalTitle').textContent = 'Editar Lote';
+        loteModal.style.display = 'block';
+      } catch(err){ alert('Erro ao carregar lote: ' + err.message); }
+    }
+
+    window.deleteLote = async function(id) {
+      if(!confirm('Tem certeza que deseja excluir este lote?')) return;
+      try {
+        await fetch(`/lotes/${id}`, {method:'DELETE'});
+        document.getElementById(`lote-${id}`).remove();
+      } catch(err){ alert('Erro ao deletar lote: ' + err.message); }
+    }
+
+    function filterTable() {
+      const field = document.getElementById('filterField').value.toLowerCase();
+      const value = document.getElementById('filterValue').value.toLowerCase();
+      Array.from(lotesTable.rows).forEach(row => {
+        const cell = row.querySelector(`td:nth-child(${field==='data'?1:field==='etiqueta'?6:7})`);
+        row.style.display = cell.textContent.toLowerCase().includes(value) ? '' : 'none';
+      });
+    }
+
+    function resetFilters() {
+      document.getElementById('filterValue').value = '';
+      Array.from(lotesTable.rows).forEach(row => row.style.display = '');
+    }
+
+    loadLotes();
+  </script>
+</body>
+</html>

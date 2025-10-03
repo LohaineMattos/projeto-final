@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Acesso</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cal+Sans&display=swap');
+* {
+  font-family: 'Cal Sans', sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  background: #21254c;
+  min-height: 100vh;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.card, .form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 2px 8px rgb(249, 247, 247);
+  width: 300px;
+  margin: 0 auto;
+  border: none;
+}
+.card:hover, .form:hover {
+  transform: scale(1.03);
+  border: 1px solid #333;
+}
+.card h2, #heading {
+  text-align: center;
+  margin: 1.2em 0;
+  color: #000000;
+  font-size: 1.1em;
+}
+.form-div, .field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3em;
+  border-radius: 10px;
+  padding: 0;
+  border: none;
+  outline: none;
+  background: none;
+  box-shadow: none;
+  margin-bottom: 10px;
+}
+.form-div label {
+  color: #000000;
+  margin-bottom: 0.2em;
+  min-width: 70px;
+}
+.form-div input, .input-field {
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #444;
+  background: #21254ca5;
+  color: #fff;
+  margin-bottom: 0;
+  font-size: 1em;
+}
+.form-div input::placeholder, .input-field::placeholder {
+  color: #bbb;
+}
+button, .button1, .button2, .button3 {
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  background: #8c0e0e;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  box-shadow: none;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.btn {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+button:hover, .button1:hover, .button2:hover {
+  background: #444;
+}
+.button3:hover {
+  background: red;
+  color: white;
+}
+.bemvindo {
+  text-align: center;
+  color: #fff;
+}
+.bemvindo h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+  </style>
+</head>
+<body>
+  <div class="card">
+    <img src="https://c5gwmsmjx1.execute-api.us-east-1.amazonaws.com/prod/dados_processo_seletivo/logo_empresa/64707/Gelco%20Azul%20400x400.png">
+    <form id="forms">
+      <div class="form-div">
+        <label for="email">Empresa</label>
+        <input type="text" id="email" required>
+      </div>
+      <div class="form-div">
+        <label for="senha">Senha</label>
+        <input type="password" id="senha" required>
+      </div>
+      <div class="btn">
+        <button class="button1" type="submit">Acessar</button>
+      </div>
+    </form>
+  </div>
+
+<script>
+document.getElementById('forms').addEventListener('submit', async function(e) {
+  e.preventDefault();
+
+  // pega os valores corretos
+  const email = document.getElementById('email').value;
+  const senha = document.getElementById('senha').value;
+
+  try {
+    const response = await fetch('http://localhost:3000/api/login', { // rota corrigida
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, senha }) // envia email e senha corretamente
+    });
+
+    const data = await response.json();
+
+    if (response.ok && data.token) {
+      localStorage.setItem('token', data.token);
+      window.location.href = 'menu.html';
+    } else {
+      alert(data.error || 'Login inválido');
+    }
+  } catch (err) {
+    alert('Erro ao conectar ao servidor');
+  }
+});
+</script>
+</body>
+</html>

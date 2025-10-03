@@ -1,0 +1,42 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Lote {
+  id            Int      @id @default(autoincrement())
+  data          DateTime
+  horario       String?
+  turno         String?
+  peso_vazio    Float?
+  peso_cheio    Float?
+  etiqueta      String?
+  operador      String?
+  tipo          String?  
+  autenticado   Boolean? @default(false)
+  peso_embalagem Float?  
+  qtd_sacos     Int?     
+}
+
+model Unitario {
+  id        Int      @id @default(autoincrement())
+  data      DateTime
+  turno     String
+  peso      Float
+  operador  String
+  etiqueta  String?  
+}
+
+model Usuario {
+  id       Int    @id @default(autoincrement())
+  nome String 
+  email String @unique
+  senha String
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+}
