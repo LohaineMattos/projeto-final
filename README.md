@@ -11,7 +11,7 @@ O projeto foi desenvolvido como Trabalho de Conclusão de Curso (TCC) e demonstr
 
 | Módulo | Descrição |
 | ------ | --------- |
-| **Unitários** | Dados de turno, operadaor e etc. |
+| **Unitários** | Dados de turno, operador e etc. |
 | **Lotes** | Registro de mercadorias. |
 | **Usuários** | Controle de acesso interno (nome, e-mail). |
 
