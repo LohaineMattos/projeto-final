@@ -16,18 +16,18 @@ router.get('/teste', (req, res) => {
 router.post('/login', login);
 
 // Rotas de Unitario (protegidas)
-router.post('/unitario', authMiddleware, unitarioController.create);
+router.post('/unitario', unitarioController.create);
 router.get('/unitario', authMiddleware, unitarioController.read);
-router.get('/unitario/:id', authMiddleware, unitarioController.readOne);
-router.put('/unitario/:id', authMiddleware, unitarioController.update);
-router.delete('/unitario/:id', authMiddleware, unitarioController.remove);
+router.get('/unitario/:id', unitarioController.readOne);
+router.put('/unitario/:id', unitarioController.update);
+router.delete('/unitario/:id', unitarioController.remove);
 
 // Rotas de Lote (protegidas)
-router.post('/lotes', authMiddleware, loteController.create);
-router.get('/lotes', authMiddleware, loteController.read);
-router.get('/lotes/:id', authMiddleware, loteController.readOne);
-router.put('/lotes/:id', authMiddleware, loteController.update);
-router.delete('/lotes/:id', authMiddleware, loteController.remove);
+router.post('/lotes', loteController.create);
+router.get('/lotes', loteController.read);
+router.get('/lotes/:id', loteController.readOne);
+router.put('/lotes/:id', loteController.update);
+router.delete('/lotes/:id', loteController.remove);
 
 // Rotas de Usuario (protegidas)
 router.post('/usuario', usuarioController.create);
