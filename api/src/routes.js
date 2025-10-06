@@ -14,6 +14,7 @@ router.get('/teste', (req, res) => {
 
 // Rota de login
 router.post('/login', login);
+router.get('/login', login);
 
 // Rotas de Unitario (protegidas)
 router.post('/unitario', unitarioController.create);
