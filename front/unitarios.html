@@ -2,15 +2,11 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Gelco - Conferência Unitária</title>
-  <!-- Font Awesome -->
+  <title>Conferência Unitária</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <!-- Seu CSS -->
-  <link rel="stylesheet" href="css/style.css">
-  <style>
-    /* =============================
-       ESTILO GERAL
-    ============================= */
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+ <style>
+    /* ============================= ESTILO GERAL ============================= */
     body {
       margin: 0;
       padding: 0;
@@ -32,12 +28,6 @@
       align-items: center;
       justify-content: space-between;
       margin-bottom: 20px;
-    }
-    .title-container h1 {
-      font-size: 1.6em;
-      font-weight: 600;
-      color: #2c3e50;
-      margin: 0;
     }
     .back-btn {
       background: #f0f0f0;
@@ -69,6 +59,24 @@
     }
     .action-btn:hover { background: #217dbb; }
 
+    .filter-btn {
+      background: #34495e;
+      color: #fff;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.9em;
+      transition: background 0.3s;
+    }
+    .filter-btn:hover { background: #2c3e50; }
+    .filter-btn.secondary {
+      background: #ecf0f1;
+      color: #333;
+      border: 1px solid #ccc;
+    }
+    .filter-btn.secondary:hover { background: #d5d8dc; }
+
     .filters { margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
     .filters select, .filters input {
       padding: 8px;
@@ -91,7 +99,6 @@
     tbody tr:nth-child(even) { background: #f9f9f9; }
     tbody tr:hover { background: #f1f1f1; }
 
-    /* Modal */
     .modal {
       display: none;
       position: fixed;
@@ -133,21 +140,19 @@
 </head>
 <body>
   <div class="container">
-    <div class="header-container">
-      <button class="back-btn" onclick="window.location.href='menu.html'">
-        <i class="fas fa-arrow-left"></i>
-      </button>
-      <div class="title-container">
-        <h1>Conferência Unitária</h1>
-      </div>
-      <div style="width: 40px;"></div>
-    </div>
+   <div class="header-container">
+  <button class="back-btn" onclick="window.location.href='menu.html'">
+    <i class="fas fa-arrow-left"></i>
+  </button>
+  <h1>Conferência Unitária</h1>
+  <div style="width: 40px;"></div>
+</div>
 
-    <button id="addUnitario" class="action-btn">
-      <i class="fas fa-plus"></i> Adicionar Registro
-    </button>
-    
-    <div class="filters">
+<button id="addUnitario" class="action-btn">
+  <i class="fas fa-plus"></i> Adicionar Registro
+</button>
+
+     <div class="filters">
       <select id="filterField">
         <option value="data">Data</option>
         <option value="etiqueta">Etiqueta</option>
@@ -158,22 +163,20 @@
       <button onclick="resetFilters()" class="filter-btn secondary">Limpar</button>
     </div>
 
-    <div class="table-container">
-      <table id="unitariosTable">
-        <thead>
-          <tr>
-            <th>Data</th>
-            <th>Turno</th>
-            <th>Peso (kg)</th>
-            <th>Operador</th>
-            <th>Etiqueta</th>
-            <th>Ações</th>
-            <th>Gráfico</th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
-    </div>
+    <table id="unitariosTable">
+      <thead>
+        <tr>
+          <th>Data</th>
+          <th>Turno</th>
+          <th>Peso</th>
+          <th>Operador</th>
+          <th>Etiqueta</th>
+          <th>Ações</th> 
+          <th>Gráfico</th> 
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
   </div>
 
   <!-- Modal -->
@@ -184,11 +187,11 @@
       <form id="unitarioForm">
         <input type="hidden" id="unitarioId">
         <div class="form-group">
-          <label for="data">Data:</label>
+          <label>Data:</label>
           <input type="date" id="data" required>
         </div>
         <div class="form-group">
-          <label for="turno">Turno:</label>
+          <label>Turno:</label>
           <select id="turno" required>
             <option value="Manhã">Manhã</option>
             <option value="Tarde">Tarde</option>
@@ -196,40 +199,22 @@
           </select>
         </div>
         <div class="form-group">
-          <label for="peso">Peso (kg):</label>
+          <label>Peso (kg):</label>
           <input type="number" step="0.01" id="peso" required>
         </div>
         <div class="form-group">
-          <label for="operador">Operador:</label>
+          <label>Operador:</label>
           <input type="text" id="operador" required>
         </div>
         <div class="form-group">
-          <label for="etiqueta">Etiqueta:</label>
+          <label>Etiqueta:</label>
           <input type="text" id="etiqueta">
         </div>
-        <button type="submit" class="submit-btn">Salvar</button>
+        <button type="submit" class="action-btn">Salvar</button>
       </form>
     </div>
   </div>
 
-  <script>
-    const addUnitarioBtn = document.getElementById('addUnitario');
-    const unitarioModal = document.getElementById('unitarioModal');
-    const closeModalBtn = document.querySelector('.close');
-    const unitarioForm = document.getElementById('unitarioForm');
-    const unitariosTable = document.getElementById('unitariosTable').querySelector('tbody');
-
-    // Abrir modal
-    addUnitarioBtn.addEventListener('click', () => {
-      unitarioForm.reset();
-      document.getElementById('unitarioId').value = '';
-      document.getElementById('modalTitle').textContent = 'Adicionar Registro Unitário';
-      unitarioModal.style.display = 'block';
-    });
-
-    // Fechar modal
-    closeModalBtn.addEventListener('click', () => unitarioModal.style.display = 'none');
-    window.addEventListener('click', (e) => { if(e.target === unitarioModal) unitarioModal.style.display = 'none'; });
-  </script>
+  <script src="api.js"></script>
 </body>
 </html>

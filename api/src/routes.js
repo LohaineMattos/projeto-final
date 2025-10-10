@@ -17,11 +17,11 @@ router.post('/login', login);
 router.get('/login', login);
 
 // Rotas de Unitario (protegidas)
-router.post('/unitario', unitarioController.create);
-router.get('/unitario', authMiddleware, unitarioController.read);
-router.get('/unitario/:id', unitarioController.readOne);
-router.put('/unitario/:id', unitarioController.update);
-router.delete('/unitario/:id', unitarioController.remove);
+router.post('/unitarios', unitarioController.create);
+router.get('/unitarios', unitarioController.read);
+router.get('/unitarios/:id', unitarioController.readOne);
+router.put('/unitarios/:id', unitarioController.update);
+router.delete('/unitarios/:id', unitarioController.remove);
 
 // Rotas de Lote (protegidas)
 router.post('/lotes', loteController.create);
