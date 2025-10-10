@@ -4,7 +4,7 @@ document.getElementById('forms').addEventListener('submit', async function(e) {
   const password = document.getElementById('senha').value;
 
   try {
-   const response = await fetch('http://localhost:3000/api/login', {
+   const response = await fetch('https://api-gelco.vercel.app/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ username, password })

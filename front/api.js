@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:3000/api";
+const API_URL = "https://api-gelco.vercel.app";
 
 // ==================== INICIALIZAÇÃO ====================
 document.addEventListener("DOMContentLoaded", () => {
